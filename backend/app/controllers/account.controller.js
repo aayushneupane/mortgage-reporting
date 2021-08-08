@@ -13,8 +13,9 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Tutorial
+  // Create a Account
   const account = {
+    id: req.body.id,
     balance: req.body.balance,
     credit: req.body.credit,
     picture: req.body.picture,
@@ -29,7 +30,7 @@ exports.create = (req, res) => {
     tags: req.body.tags,
   };
 
-  // Save Tutorial in the database
+  // Save Account in the database
   Account.create(account)
     .then((data) => {
       res.send(data);
@@ -44,7 +45,11 @@ exports.create = (req, res) => {
 
 // Retrieve all Accounts from the database.
 exports.findAll = (req, res) => {
-  Account.findAll({})
+  const name_first = req.query.firstName;
+  let condition = name_first
+    ? { name_first: { [Op.like]: `%${name_first}%` } }
+    : null;
+  Account.findAll({ where: condition })
     .then((data) => {
       res.send(data);
     })
@@ -86,7 +91,7 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Account with id=${id}. Maybe Tutorial was not found or req.body is empty!`,
+          message: `Cannot update Account with id=${id}. Maybe Account was not found or req.body is empty!`,
         });
       }
     })
