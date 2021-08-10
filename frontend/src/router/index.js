@@ -1,24 +1,24 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import AccountDetail from "../views/AccountDetail.vue";
+import AccountView from "../views/AccountView.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
   },
   {
     path: "/account/:id",
     name: "Account Detail",
-    component: AccountDetail
-  }
+    component: AccountView,
+  },
 ];
 
 const router = createRouter({
   mode: "history",
   history: createWebHashHistory(),
-  routes
+  routes,
 });
 
 export default router;

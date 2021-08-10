@@ -8,7 +8,6 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
       },
       balance: Sequelize.DECIMAL,
       credit: Sequelize.INTEGER,
